@@ -1,0 +1,18 @@
+
+# Core scientific computing
+numpy>=1.26.2
+pandas==2.3.0
+scipy>=1.11.4
+tqdm
+
+# LLM orchestration
+langchain-core
+langgraph
+langchain-openai
+
+# Validation and configuration
+pydantic>=2.7.4,<3.0.0
+python-dotenv
+typing-extensions>=4.0.0
+
+# Optional local development / notebook workflows are installed separately

@@ -1,0 +1,36 @@
+{
+  "ode_id": 46,
+  "name": "Interacting bar magnets",
+  "dimension": 2,
+  "description": "This system describes two nearby bar magnets whose orientations influence each other through distance-dependent magnetic interactions. Depending on initial conditions and external effects, the magnets may settle into stable alignments, oscillate, rotate together, or follow complex motion patterns.",
+  "category": "Magnetism / Nonlinear Dynamics",
+  "equation": {
+    "python": [
+      "c0 * np.sin(x0 - x1) - np.sin(x0)",
+      "-c0 * np.sin(x0 - x1) - np.sin(x1)"
+    ]
+  },
+  "parameters": {
+    "c0": 0.33
+  },
+  "initial_conditions": [
+    [
+      0.54,
+      -0.1
+    ],
+    [
+      0.43,
+      1.21
+    ]
+  ],
+  "time_domain": {
+    "t_start": 0.0,
+    "t_end": 2.0,
+    "t_ood_end": 4.0,
+    "dt": 0.005
+  },
+  "references": [
+    "https://www.rose-hulman.edu/~moloney/Ph425/0143-0807_33_2_385VerticalRepellingMagnetOscs.pdf",
+    "https://link.aps.org/doi/10.1103/PhysRevE.94.012224"
+  ]
+}

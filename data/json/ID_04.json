@@ -1,0 +1,38 @@
+{
+  "ode_id": 45,
+  "name": "Gray and Scott isothermal autocatalytic reaction model, 1985 (dimensionless)",
+  "dimension": 2,
+  "description": "This describes an open chemical system where a precursor is continuously supplied and an autocatalytic species both self-amplifies and decays. The interplay of local activation and global depletion leads to spontaneous pattern formation such as spots, waves, spirals, and chaotic spatial behavior arising from instability of an initially uniform state.",
+  "category": "Chemical Kinetics / Pattern Formation",
+  "equation": {
+    "python": [
+      "c0 * (1.0 - x0) - x0 * x1**2",
+      "-c1 * x1 + x0 * x1**2"
+    ]
+  },
+  "parameters": {
+    "c0": 0.5,
+    "c1": 0.02
+  },
+  "initial_conditions": [
+    [
+      1.4,
+      0.2
+    ],
+    [
+      0.32,
+      0.64
+    ]
+  ],
+  "time_domain": {
+    "t_start": 0.0,
+    "t_end": 2.0,
+    "t_ood_end": 4.0,
+    "dt": 0.005
+  },
+  "references": [
+    "https://pub.math.leidenuniv.nl/~doelmana/HP_PUB/DKZ.pdf",
+    "https://arxiv.org/pdf/1605.09712.pdf",
+    "https://www.sciencedirect.com/science/article/abs/pii/S0167278900001834"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "ode_id": 101,
+  "name": "Glider Flight Dynamics (Physical Units)",
+  "dimension": 4,
+  "description": "This experiment is conducted to measure the physical motion characteristics of a glider in a real-world flight environment. The experimenter establishes the glider's actual travel speed, the flight path angle relative to the horizontal plane, and the horizontal distance and vertical altitude within a 2D plane as the primary measurement variables; specifically, the state variables are defined as forward velocity x0, path angle x1, horizontal position x2, and vertical altitude x3. The background of the experiment involves a physical scenario where an aircraft of a specific mass moves through an atmosphere subject to constant gravitational acceleration, experiencing lift and drag forces determined by wing geometry and air density. Before the experiment begins, with the aircraft's mass, wing area, and atmospheric conditions defined, the initial launch velocity and altitude are set to record the flight trajectory. This type of experiment analyzes how acceleration due to gravity and deceleration due to air resistance combine with changes in the flight angle to shape the overall descent path. The experimenter aims to model the physical correlations between the rates of change in velocity and angle and the variations in altitude and position to understand the aircraft's dynamic equilibrium.",
+  "category": "Classical Mechanics / Aerodynamics",
+  "equation": {
+    "python": [
+      "-c0 * np.sin(x1) - (c1 * c2 * x0**2) / (2 * c3)",
+      "-(c0 * np.cos(x1)) / x0 + (c1 * c4 * x0) / (2 * c3)",
+      "x0 * np.cos(x1)",
+      "x0 * np.sin(x1)"
+    ]
+  },
+  "parameters": {
+    "c0": 9.81,
+    "c1": 1.225,
+    "c2": 0.05,
+    "c3": 1.0,
+    "c4": 1.0
+  },
+  "initial_conditions": [
+    [
+      10.0,
+      -0.1,
+      0.0,
+      100.0
+    ],
+    [
+      5.0,
+      0.0,
+      0.0,
+      50.0
+    ]
+  ],
+  "time_domain": {
+    "t_start": 0.0,
+    "t_end": 5.0,
+    "t_ood_end": 10.0,
+    "dt": 0.005
+  }
+}

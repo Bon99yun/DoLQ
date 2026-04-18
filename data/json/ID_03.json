@@ -1,0 +1,34 @@
+{
+  "ode_id": 42,
+  "name": "Reduced model for chlorine dioxideiodine-malonic acid rection (dimensionless)",
+  "dimension": 2,
+  "description": "This measures the kinetics of chemical oxidation-reduction reactions occurring in a gel medium within a continuously fed, unstirred reactor. State variable x0 is the concentration of an activator species that autocatalyzes the reaction and possesses the characteristic of limited spatial mobility due to binding with polymer indicators in the medium. State variable x1 represents the concentration of a species that inhibits the production of this activator. The core dynamics of this system are determined by collisions between the activator and the inhibitor; the production rate of the activator exhibits a saturation pattern where it no longer increases due to the limits of reaction substrates in the medium once the activator concentration rises above a certain level. Additionally, the process where the two species meet and the activator is consumed is minimal when the activator concentration is very low, but exhibits a characteristic where efficiency changes rapidly as it passes a specific concentration range. In the experiment, external halides are added, creating a separate consumption pathway that directly reacts with the inhibitor to reduce its quantity. The rate of change of the system is modeled based on the physical grounds of these concentration-dependent generation and consumption mechanisms between chemical species, as well as the additional reaction pathways caused by external additives.",
+  "category": "Chemical Kinetics / Pattern Formation",
+  "equation": {
+    "python": [
+      "c0 - (c1 * x0 * x1) / (x0**2 + 1.0) - x0",
+      "c2 * x0 * (1.0 - x1 / (x0**2 + 1.0))"
+    ]
+  },
+  "parameters": {
+    "c0": 8.9,
+    "c1": 4.0,
+    "c2": 1.4
+  },
+  "initial_conditions": [
+    [
+      0.2,
+      3.0
+    ],
+    [
+      0.35,
+      7.8
+    ]
+  ],
+  "time_domain": {
+    "t_start": 0.0,
+    "t_end": 5.0,
+    "t_ood_end": 10.0,
+    "dt": 0.005
+  }
+}

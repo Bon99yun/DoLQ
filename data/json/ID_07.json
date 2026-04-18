@@ -1,0 +1,38 @@
+{
+  "ode_id": 51,
+  "name": "Ermentrout and Kopell 1990 oscillator death model",
+  "dimension": 2,
+  "description": "This describes a counterintuitive effect where coupling two identical oscillating systems can completely suppress their oscillations. Strong symmetric interaction forces both systems into a shared steady state, causing oscillatory activity to disappear regardless of initial motion.",
+  "category": "Nonlinear Dynamics / Coupled Oscillators",
+  "equation": {
+    "python": [
+      "c0 + np.sin(x1) * np.cos(x0)",
+      "c1 + np.sin(x1) * np.cos(x0)"
+    ]
+  },
+  "parameters": {
+    "c0": 1.432,
+    "c1": 0.972
+  },
+  "initial_conditions": [
+    [
+      2.2,
+      0.67
+    ],
+    [
+      0.03,
+      -0.12
+    ]
+  ],
+  "time_domain": {
+    "t_start": 0.0,
+    "t_end": 4.0,
+    "t_ood_end": 8.0,
+    "dt": 0.005
+  },
+  "references": [
+    "https://sites.pitt.edu/~phase/bard/pubs/siam50_1.pdf",
+    "https://www.sciencedirect.com/science/article/pii/0167278990901248",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC2933512/"
+  ]
+}

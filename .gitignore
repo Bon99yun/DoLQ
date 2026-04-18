@@ -1,0 +1,19 @@
+
+
+# Ignore local environment files and secrets
+.env
+*.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+__pycache__/*
+*.py[cod]
+*$py.class
+
+logs/*
+
+# Run bash scripts directory - ignore entire directory
+run_bash/
+
+
+.omx/

@@ -1,0 +1,33 @@
+{
+  "ode_id": 31,
+  "name": "SIR infection model considering only healthy individuals and patients",
+  "dimension": 2,
+  "description": "This model describes disease spread by dividing the population into susceptible and infected groups, with transmission proportional to their contact and infected individuals recovering at a constant rate. An epidemic occurs only when the transmission rate exceeds a threshold, revealing a critical condition for outbreak or extinction.",
+  "category": "Epidemiology / Disease Dynamics",
+  "equation": {
+    "python": [
+      "-c0 * x0 * x1",
+      "c0 * x0 * x1 - c1 * x1"
+    ]
+  },
+  "parameters": {
+    "c0": 0.4,
+    "c1": 0.314
+  },
+  "initial_conditions": [
+    [
+      7.2,
+      0.98
+    ],
+    [
+      20.0,
+      12.4
+    ]
+  ],
+  "time_domain": {
+    "t_start": 0.0,
+    "t_end": 2.0,
+    "t_ood_end": 4.0,
+    "dt": 0.005
+  }
+}

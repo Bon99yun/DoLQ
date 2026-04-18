@@ -1,0 +1,32 @@
+{
+  "ode_id": 33,
+  "name": "Glider (dimensionless)",
+  "dimension": 2,
+  "description": "The glider is viewed as an idealized system whose motion is expected to arise from the interplay of gravity and aerodynamic forces, with speed and flight path angle evolving from assumed initial conditions.",
+  "category": "Classical Mechanics / Aerodynamics",
+  "equation": {
+    "python": [
+      "-x0**2 / c0 - np.sin(x1)",
+      "x0 - np.cos(x1) / x0"
+    ]
+  },
+  "parameters": {
+    "c0": 5.0
+  },
+  "initial_conditions": [
+    [
+      5.0,
+      0.7
+    ],
+    [
+      9.81,
+      -0.8
+    ]
+  ],
+  "time_domain": {
+    "t_start": 0.0,
+    "t_end": 5.0,
+    "t_ood_end": 10.0,
+    "dt": 0.005
+  }
+}
