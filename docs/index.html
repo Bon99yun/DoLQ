@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="DoLQ discovers ordinary differential equations with LLM-based qualitative and quantitative evaluation."
+    />
+    <meta name="theme-color" content="#fbfaf7" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="DoLQ" />
+    <meta property="og:title" content="DoLQ | LLM-Based Qualitative and Quantitative ODE Discovery" />
+    <meta
+      property="og:description"
+      content="DoLQ discovers ordinary differential equations with LLM-based qualitative and quantitative evaluation."
+    />
+    <meta property="og:image" content="http://203.237.81.58:25727/assets/og/dolq-overview-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="DoLQ overview figure showing the Sampler, Optimizer, and Scientist workflow."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DoLQ | LLM-Based Qualitative and Quantitative ODE Discovery" />
+    <meta
+      name="twitter:description"
+      content="DoLQ discovers ordinary differential equations with LLM-based qualitative and quantitative evaluation."
+    />
+    <meta name="twitter:image" content="http://203.237.81.58:25727/assets/og/dolq-overview-og.png" />
+    <meta
+      name="twitter:image:alt"
+      content="DoLQ overview figure showing the Sampler, Optimizer, and Scientist workflow."
+    />
+    <title>DoLQ | LLM-Based Qualitative and Quantitative ODE Discovery</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="./assets/figure/dolq_framework.png" />
+    <link rel="stylesheet" href="./styles.css?v=kakao-overview-og-20260418" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="nav" aria-label="Project navigation">
+        <a class="brand" href="#top" aria-label="DoLQ home">
+          <span class="brand-mark">D</span>
+          <span>DoLQ</span>
+        </a>
+        <nav class="nav-links" aria-label="Section links">
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#citation">Citation</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero section-pad" aria-labelledby="paper-title">
+          <div class="hero-corner-logos" aria-label="Institution and lab logos">
+            <img src="./assets/logo/CAU_emblem.png" alt="Chung-Ang University emblem" decoding="async" />
+            <img src="./assets/logo/lab_logo.png" alt="Mathematical AI and Scientific Computing Lab logo" decoding="async" />
+          </div>
+          <img class="hero-corner-mascot" src="./assets/logo/mascott.png" alt="DoLQ mascot illustration" decoding="async" />
+
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <span class="status-dot" aria-hidden="true"></span>
+              ICML 2026 · Scientific Machine Learning
+            </div>
+            <h1 id="paper-title">
+              Discovering Ordinary Differential Equations with LLM-Based
+              Qualitative and Quantitative Evaluation
+            </h1>
+            <div class="author-block" aria-label="Authors and affiliations">
+              <p>
+                <a class="author-link" href="https://github.com/sumkyun"><strong>Sum Kyun Song</strong></a><sup>1</sup>,
+                <a class="author-link" href="https://orcid.org/0009-0008-6169-759X"><strong>Bong Gyun Shin</strong></a><sup>2</sup>,
+                <a class="author-link" href="https://www.jaeyong-lee.com/"><strong>Jae Yong Lee</strong></a><sup>1</sup>
+              </p>
+              <p class="affiliations">
+                <sup>1</sup>Chung-Ang University ·
+                <sup>2</sup>Daejin University
+              </p>
+            </div>
+
+            <div class="cta-row" aria-label="Project links">
+              <a class="button button-primary button-disabled" href="" aria-disabled="true">Paper PDF</a>
+              <a class="button" href="https://github.com/Bon99yun/DoLQ/tree/main" target="_blank" rel="noreferrer">Code ↗</a>
+              <a class="button" href="#citation">BibTeX</a>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="paper-section" aria-labelledby="abstract-title">
+          <h2 id="abstract-title">Abstract</h2>
+          <p>
+            Discovering governing differential equations from observational data
+            is a central challenge in scientific machine learning. Existing
+            symbolic regression approaches often emphasize numerical metrics,
+            but scientific modeling also requires domain knowledge and physical
+            plausibility.
+          </p>
+          <p>
+            Discovering Ordinary Differential Equations with LLM-Based Qualitative
+            and Quantitative Evaluation (<strong>DoLQ</strong>) addresses this gap
+            with a multi-agent framework. A Sampler Agent proposes candidate dynamics,
+            a Parameter Optimizer refines their coefficients, and a Scientist
+            Agent evaluates each term through both qualitative semantic reasoning
+            and quantitative contribution analysis.
+            Across multi-dimensional ODE benchmarks, DoLQ achieves higher
+            success rates and more accurately recovers the symbolic terms of
+            the ground-truth equations.
+          </p>
+        </section>
+
+        <section id="method" class="paper-section" aria-labelledby="method-title">
+          <h2 id="method-title">Method</h2>
+          <figure id="method-overview" class="project-figure project-figure-wide">
+            <img
+              src="./assets/figure/dolq_framework.png"
+              alt="Overview of the DoLQ framework connecting Sampler Agent, Parameter Optimizer, and Scientist Agent."
+              decoding="async"
+            />
+            <figcaption>
+              <strong>DoLQ overview.</strong> The loop has three roles:
+              the Sampler proposes ODE terms, the Optimizer fits coefficients,
+              and the Scientist decides which terms to keep, hold, or remove.
+              These decisions become feedback for the next search iteration.
+            </figcaption>
+          </figure>
+          <p>
+            The framework forms a closed loop: candidate ODE terms are generated
+            from the system description, optimized against numerical evidence,
+            evaluated for both semantic plausibility and quantitative impact, and
+            then revised using the Scientist Agent's feedback. This makes the
+            search easier to read than a purely numerical symbolic regression
+            loop, because every retained or removed term is tied to an explicit
+            evaluation signal.
+          </p>
+          <p>
+            The Scientist Agent combines two complementary signals: a quantitative
+            ablation test that measures how each term affects residual error, and
+            a qualitative semantic check that judges whether the term is physically
+            meaningful under the system description. The combined signal determines
+            whether a term is kept, held for more evidence, or removed from future
+            proposals.
+          </p>
+        </section>
+
+        <section id="results" class="paper-section" aria-labelledby="results-title">
+          <h2 id="results-title">Results</h2>
+          <p>
+            We evaluate DoLQ against representative LLM-based symbolic regression
+            baselines, including
+            <a class="paper-link" href="https://arxiv.org/abs/2404.19094"><strong>ICSR</strong></a>,
+            <a class="paper-link" href="https://arxiv.org/abs/2409.09359"><strong>L<span class="small-caps">A</span>SR</strong></a>,
+            <a class="paper-link" href="https://arxiv.org/abs/2404.18400"><strong>LLM-SR</strong></a>,
+            and
+            <a class="paper-link" href="https://pubs.aip.org/aip/pof/article/36/9/097121/3312108/Large-language-models-for-automatic-equation"><strong>EDL</strong></a>.
+            Quantitative performance is measured with residual and integral NMSE
+            under ID and ID-Ext regimes, while structural quality is assessed by
+            whether the recovered equations match the ground-truth symbolic terms.
+          </p>
+
+          <figure id="quantitative-nmse" class="project-figure project-figure-wide table-capture">
+            <img
+              src="./assets/figure/dolq_nmse_table.png"
+              alt="Quantitative NMSE comparison across SIR, CDIMA, and Glider benchmarks."
+              decoding="async"
+            />
+            <figcaption>
+              <strong>Quantitative NMSE comparison.</strong> The table reports
+              dimension-averaged residual and integral NMSE on representative ODE
+              systems under ID and ID-Ext evaluation regimes. Lower values indicate
+              better recovery; bold-underlined values mark the best result and bold
+              values mark the second best.
+            </figcaption>
+          </figure>
+
+          <figure id="equation-comparison" class="project-figure project-figure-wide">
+            <img
+              src="./assets/figure/dolq_equation_comparison.png"
+              alt="Equation comparison between DoLQ and baseline symbolic regression methods on the 2D dimensionless Glider system."
+              decoding="async"
+            />
+            <figcaption>
+              <strong>Equation comparison.</strong> On the 2D dimensionless Glider
+              system, this comparison shows the recovered symbolic equations rather
+              than only their numerical errors. DoLQ retains the ground-truth terms
+              with fewer unnecessary terms, while several baselines either miss key
+              dynamics or produce bloated equation skeletons.
+            </figcaption>
+          </figure>
+
+          <figure id="benchmark-success" class="project-figure">
+            <img
+              src="./assets/figure/dolq_scores.png"
+              alt="Success score comparison across ODE benchmarks."
+              decoding="async"
+            />
+            <figcaption>
+              <strong>Benchmark success.</strong> Across eight ODE systems, DoLQ
+              achieves the strongest success scores under both the NMSE criterion
+              and the term-recovery criterion. This indicates that DoLQ improves not
+              only trajectory-level accuracy but also recovery of the underlying
+              symbolic structure.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="citation" class="section-pad citation" aria-labelledby="citation-title">
+          <div class="section-heading">
+            <p class="section-label">Citation</p>
+            <h2 id="citation-title">BibTeX</h2>
+          </div>
+          <div class="bibtex-card">
+            <button class="copy-bibtex" type="button" aria-label="Copy BibTeX citation">Copy BibTeX</button>
+            <pre><code id="bibtex-code">@inproceedings{,
+  title     = {},
+  author    = {},
+  booktitle = {},
+  year      = {},
+  url       = {}
+}</code></pre>
+            <p class="copy-status" aria-live="polite"></p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <a href="#top">Back to top ↑</a>
+      </footer>
+      <a class="back-to-top-floating" href="#top" aria-label="Back to top">↑</a>
+    </div>
+
+    <div
+      class="image-modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="image-modal-title"
+      aria-describedby="image-modal-caption image-modal-hint"
+    >
+      <div class="image-modal-controls" aria-label="Image zoom controls">
+        <button class="image-modal-control image-modal-zoom-out" type="button" aria-label="Zoom out">−</button>
+        <button class="image-modal-control image-modal-reset" type="button" aria-label="Reset zoom to fit">100%</button>
+        <button class="image-modal-control image-modal-zoom-in" type="button" aria-label="Zoom in">+</button>
+      </div>
+      <button class="image-modal-close" type="button" aria-label="Close expanded figure">×</button>
+      <figure class="image-modal-card">
+        <h2 id="image-modal-title" class="sr-only">Expanded figure preview</h2>
+        <p id="image-modal-hint" class="image-modal-hint">Scroll to zoom · Drag to pan · Use + / − / 0</p>
+        <div class="image-modal-viewport" aria-label="Zoomable image viewport">
+          <img class="image-modal-img" alt="" draggable="false" />
+        </div>
+        <figcaption id="image-modal-caption" class="image-modal-caption"></figcaption>
+      </figure>
+    </div>
+    <script>
+      (() => {
+        const modal = document.querySelector('.image-modal');
+        const viewport = document.querySelector('.image-modal-viewport');
+        const modalImg = document.querySelector('.image-modal-img');
+        const modalCaption = document.querySelector('.image-modal-caption');
+        const closeButton = document.querySelector('.image-modal-close');
+        const zoomInButton = document.querySelector('.image-modal-zoom-in');
+        const zoomOutButton = document.querySelector('.image-modal-zoom-out');
+        const resetButton = document.querySelector('.image-modal-reset');
+        const figures = document.querySelectorAll('.project-figure');
+        const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+        const copyBibtexButton = document.querySelector('.copy-bibtex');
+        const copyStatus = document.querySelector('.copy-status');
+        const bibtexCode = document.querySelector('#bibtex-code');
+        const focusableSelector = 'button, [href], img[tabindex], [tabindex]:not([tabindex="-1"])';
+        let lastTrigger = null;
+        let zoom = 1;
+        let isPanning = false;
+        let panStartX = 0;
+        let panStartY = 0;
+        let panScrollLeft = 0;
+        let panScrollTop = 0;
+        const minZoom = 1;
+        const maxZoom = 5;
+        const buttonZoomStep = 1.25;
+
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+        const updateZoomControls = () => {
+          zoomOutButton.disabled = zoom <= minZoom + 0.001;
+          zoomInButton.disabled = zoom >= maxZoom - 0.001;
+          resetButton.textContent = `${Math.round(zoom * 100)}%`;
+          resetButton.disabled = zoom <= minZoom + 0.001;
+          viewport.classList.toggle('is-zoomed', zoom > minZoom + 0.001);
+          modalImg.style.width = `${zoom * 100}%`;
+        };
+
+        const resetZoom = () => {
+          zoom = minZoom;
+          modalImg.style.width = '100%';
+          if (viewport) {
+            viewport.scrollLeft = 0;
+            viewport.scrollTop = 0;
+            viewport.classList.remove('is-panning');
+          }
+          isPanning = false;
+          updateZoomControls();
+        };
+
+        const zoomAt = (nextZoom, originX, originY) => {
+          const previousZoom = zoom;
+          nextZoom = clamp(nextZoom, minZoom, maxZoom);
+          if (Math.abs(nextZoom - previousZoom) < 0.001) return;
+
+          const contentX = (viewport.scrollLeft + originX) / previousZoom;
+          const contentY = (viewport.scrollTop + originY) / previousZoom;
+          zoom = nextZoom;
+          updateZoomControls();
+
+          requestAnimationFrame(() => {
+            viewport.scrollLeft = contentX * zoom - originX;
+            viewport.scrollTop = contentY * zoom - originY;
+          });
+        };
+
+        const zoomFromViewportCenter = (factor) => {
+          zoomAt(
+            zoom * factor,
+            viewport.clientWidth / 2,
+            viewport.clientHeight / 2
+          );
+        };
+
+        const openModal = (figure) => {
+          const img = figure.querySelector('img');
+          const caption = figure.querySelector('figcaption');
+          if (!img) return;
+          lastTrigger = img;
+          resetZoom();
+          modalImg.src = img.currentSrc || img.src;
+          modalImg.alt = img.alt || 'Expanded figure';
+          modalCaption.textContent = caption ? caption.textContent.trim() : img.alt;
+          modal.classList.add('is-open');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('modal-open');
+          requestAnimationFrame(() => {
+            resetZoom();
+            closeButton.focus({ preventScroll: true });
+          });
+        };
+
+        const closeModal = () => {
+          modal.classList.remove('is-open');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('modal-open');
+          modalImg.removeAttribute('src');
+          resetZoom();
+          if (lastTrigger) lastTrigger.focus({ preventScroll: true });
+        };
+
+        figures.forEach((figure) => {
+          const img = figure.querySelector('img');
+          if (!img) return;
+          img.classList.add('zoomable-figure');
+          img.tabIndex = 0;
+          img.setAttribute('role', 'button');
+          img.setAttribute('aria-label', 'Click to open expanded preview');
+          img.addEventListener('click', () => openModal(figure));
+          img.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              openModal(figure);
+            }
+          });
+        });
+
+        closeButton.addEventListener('click', closeModal);
+        zoomInButton.addEventListener('click', () => zoomFromViewportCenter(buttonZoomStep));
+        zoomOutButton.addEventListener('click', () => zoomFromViewportCenter(1 / buttonZoomStep));
+        resetButton.addEventListener('click', resetZoom);
+
+        viewport.addEventListener('wheel', (event) => {
+          if (!modal.classList.contains('is-open')) return;
+          event.preventDefault();
+          const rect = viewport.getBoundingClientRect();
+          const originX = event.clientX - rect.left;
+          const originY = event.clientY - rect.top;
+          const wheelFactor = Math.exp(-event.deltaY * 0.0012);
+          zoomAt(zoom * wheelFactor, originX, originY);
+        }, { passive: false });
+
+        viewport.addEventListener('pointerdown', (event) => {
+          if (!modal.classList.contains('is-open') || zoom <= minZoom + 0.001) return;
+          isPanning = true;
+          panStartX = event.clientX;
+          panStartY = event.clientY;
+          panScrollLeft = viewport.scrollLeft;
+          panScrollTop = viewport.scrollTop;
+          viewport.classList.add('is-panning');
+          viewport.setPointerCapture(event.pointerId);
+        });
+
+        viewport.addEventListener('pointermove', (event) => {
+          if (!isPanning) return;
+          event.preventDefault();
+          viewport.scrollLeft = panScrollLeft - (event.clientX - panStartX);
+          viewport.scrollTop = panScrollTop - (event.clientY - panStartY);
+        });
+
+        const stopPanning = (event) => {
+          if (!isPanning) return;
+          isPanning = false;
+          viewport.classList.remove('is-panning');
+          if (viewport.hasPointerCapture(event.pointerId)) {
+            viewport.releasePointerCapture(event.pointerId);
+          }
+        };
+
+        viewport.addEventListener('pointerup', stopPanning);
+        viewport.addEventListener('pointercancel', stopPanning);
+        viewport.addEventListener('dblclick', (event) => {
+          if (!modal.classList.contains('is-open')) return;
+          const rect = viewport.getBoundingClientRect();
+          if (zoom > minZoom + 0.001) {
+            resetZoom();
+          } else {
+            zoomAt(2, event.clientX - rect.left, event.clientY - rect.top);
+          }
+        });
+
+        const trapModalFocus = (event) => {
+          const focusable = Array.from(modal.querySelectorAll(focusableSelector))
+            .filter((element) => !element.disabled && element.offsetParent !== null);
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        };
+
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (event) => {
+          if (!modal.classList.contains('is-open')) return;
+          if (event.key === 'Escape') {
+            closeModal();
+          } else if (event.key === 'Tab') {
+            trapModalFocus(event);
+          } else if (event.key === '+' || event.key === '=') {
+            event.preventDefault();
+            zoomFromViewportCenter(buttonZoomStep);
+          } else if (event.key === '-' || event.key === '_') {
+            event.preventDefault();
+            zoomFromViewportCenter(1 / buttonZoomStep);
+          } else if (event.key === '0') {
+            event.preventDefault();
+            resetZoom();
+          }
+        });
+
+        copyBibtexButton?.addEventListener('click', async () => {
+          if (!bibtexCode || !copyStatus) return;
+          const citation = bibtexCode.textContent.trim();
+          const markCopied = () => {
+            copyStatus.textContent = 'Copied.';
+            copyBibtexButton.textContent = 'Copied';
+            setTimeout(() => {
+              copyStatus.textContent = '';
+              copyBibtexButton.textContent = 'Copy BibTeX';
+            }, 1600);
+          };
+          try {
+            if (navigator.clipboard?.writeText) {
+              await navigator.clipboard.writeText(citation);
+            } else {
+              const textarea = document.createElement('textarea');
+              textarea.value = citation;
+              textarea.setAttribute('readonly', '');
+              textarea.style.position = 'fixed';
+              textarea.style.opacity = '0';
+              document.body.append(textarea);
+              textarea.select();
+              document.execCommand('copy');
+              textarea.remove();
+            }
+            markCopied();
+          } catch {
+            copyStatus.textContent = 'Copy failed. Select the text manually.';
+          }
+        });
+
+        const sectionTargets = Array.from(navLinks)
+          .map((link) => document.querySelector(link.getAttribute('href')))
+          .filter(Boolean);
+        const setActiveNav = () => {
+          const currentY = window.scrollY + 130;
+          let current = sectionTargets[0];
+          sectionTargets.forEach((section) => {
+            if (section.offsetTop <= currentY) current = section;
+          });
+          navLinks.forEach((link) => {
+            link.classList.toggle('is-active', link.getAttribute('href') === `#${current?.id}`);
+          });
+        };
+        window.addEventListener('scroll', setActiveNav, { passive: true });
+        window.addEventListener('load', setActiveNav);
+        setActiveNav();
+
+      })();
+    </script>
+  </body>
+</html>

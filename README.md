@@ -6,9 +6,9 @@ The figure below shows how the sampler, optimizer, and scientist components inte
 
 ## Method overview
 
-![DoLQ framework figure showing the sampler prompt, sampler response, optimizer, scientist prompt, evaluation, and feedback loop](figure/figure1.png)
+![DoLQ framework figure showing the sampler prompt, sampler response, optimizer, scientist prompt, evaluation, and feedback loop](figure/dolq_framework.png)
 
-*Figure 1. DoLQ framework overview. [Source PDF](figure/figure1.pdf).*
+*Figure 2. DoLQ framework overview.*
 
 The code in this repository follows the paper’s iterative loop:
 
@@ -60,6 +60,8 @@ DoLQ/
 ├── Makefile                 # `make setup` / `make clean`
 ├── install_env.sh           # Conda environment setup script
 ├── requirements.txt         # Python dependencies
+├── docs/                    # GitHub Pages project site
+├── figure/                  # README and project-site figures
 ├── run_bash/                # Example batch-run scripts
 └── data/
     ├── 2D/
@@ -69,6 +71,25 @@ DoLQ/
 ```
 
 > Note: this checkout currently includes the paper-table benchmark data under `2D` and `4D`; there is no `data/1D/` or `data/3D/` directory in the current benchmark layout.
+
+---
+
+## Project site
+
+The project page lives in `docs/` and is ready to be served through GitHub Pages with the repository setting:
+
+- Source: **Deploy from a branch**
+- Branch: `main`
+- Folder: `/docs`
+
+For local preview:
+
+```bash
+cd docs
+python3 -m http.server 8080 --bind 127.0.0.1
+```
+
+Then open `http://localhost:8080/`. The page uses local assets under `docs/assets/` so the same paths work when GitHub Pages serves `docs/` as the site root.
 
 ---
 
@@ -370,14 +391,15 @@ Try one or more of the following:
 
 ## Citation
 
-The paper is currently under review. Replace the placeholder below with the final bibliographic record when the paper is published or finalized.
+Citation metadata is intentionally left as a skeleton until the final bibliographic record is ready.
 
 ```bibtex
-@article{dolq,
-  title  = {Discovering Ordinary Differential Equations with LLM-Based Qualitative and Quantitative Evaluation},
-  author = {Anonymous},
-  note   = {Under review},
-  year   = {2026}
+@inproceedings{,
+  title     = {},
+  author    = {},
+  booktitle = {},
+  year      = {},
+  url       = {}
 }
 ```
 
@@ -385,7 +407,9 @@ The paper is currently under review. Replace the placeholder below with the fina
 
 ## License
 
-Add the intended license here. This checkout does not currently include a `LICENSE` file.
+This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0).
+
+See: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 ---
 
@@ -393,7 +417,6 @@ Add the intended license here. This checkout does not currently include a `LICEN
 
 If you run into a bug, open an issue in the repository and include:
 
-- the problem name
 - the problem name and dimension
 - the command you ran
 - the last few lines of the log directory for the run
