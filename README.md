@@ -2,6 +2,8 @@
 
 DoLQ is a multi-agent framework for discovering governing ordinary differential equations (ODEs) from observational data. It combines language-model reasoning with numerical optimization so the search loop can rank candidate terms by both fit and physical plausibility.
 
+**Project site:** https://bon99yun.github.io/DoLQ/
+
 The figure below shows how the sampler, optimizer, and scientist components interact in the full loop.
 
 ## Method overview
@@ -76,20 +78,9 @@ DoLQ/
 
 ## Project site
 
-The project page lives in `docs/` and is ready to be served through GitHub Pages with the repository setting:
+The project page is available at https://bon99yun.github.io/DoLQ/.
 
-- Source: **Deploy from a branch**
-- Branch: `main`
-- Folder: `/docs`
-
-For local preview:
-
-```bash
-cd docs
-python3 -m http.server 8080 --bind 127.0.0.1
-```
-
-Then open `http://localhost:8080/`. The page uses local assets under `docs/assets/` so the same paths work when GitHub Pages serves `docs/` as the site root.
+The static site source lives in `docs/`, with local assets under `docs/assets/`.
 
 ---
 
