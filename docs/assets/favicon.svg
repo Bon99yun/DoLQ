@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DoLQ favicon">
+  <rect width="64" height="64" rx="16" fill="#fbfaf7"/>
+  <circle cx="49" cy="15" r="7" fill="#0f9f6e" opacity="0.18"/>
+  <path d="M18 14h14c11 0 19 7 19 18s-8 18-19 18H18V14zm9 8v20h5c6 0 10-4 10-10s-4-10-10-10h-5z" fill="#172016"/>
+  <path d="M15 53c12-16 25-24 40-27" stroke="#0f9f6e" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.75"/>
+</svg>
