@@ -8,7 +8,7 @@ The figure below shows how the sampler, optimizer, and scientist components inte
 
 ## Method overview
 
-![DoLQ framework figure showing the sampler prompt, sampler response, optimizer, scientist prompt, evaluation, and feedback loop](figure/dolq_framework.png)
+![DoLQ framework figure showing the sampler prompt, sampler response, optimizer, scientist prompt, evaluation, and feedback loop](docs/assets/figure/dolq_framework.png)
 
 *Figure 2. DoLQ framework overview.*
 
@@ -62,8 +62,7 @@ DoLQ/
 ├── Makefile                 # `make setup` / `make clean`
 ├── install_env.sh           # Conda environment setup script
 ├── requirements.txt         # Python dependencies
-├── docs/                    # GitHub Pages project site
-├── figure/                  # README and project-site figures
+├── docs/                    # GitHub Pages project site and shared figures
 ├── run_bash/                # Example batch-run scripts
 └── data/
     ├── 2D/
